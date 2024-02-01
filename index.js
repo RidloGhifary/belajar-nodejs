@@ -1,7 +1,7 @@
 const http = require("node:http");
-const { readFile, writeFile } = require("fs").promises;
+const { readFile, writeFile, createReadStream } = require("fs");
 
-const util = require("util");
+// const util = require("util");
 // const readFilePromise = util.promisify(readFile);
 // const writeFilePromise = util.promisify(writeFile);
 
@@ -11,9 +11,12 @@ const port = 8000;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
 
+  const stream = createReadStream("./content/bigFile.txt", "utf8");
+
   if (req.url === "/") {
     res.setHeader("Content-Type", "text/plain");
-    res.end("Hello World\n");
+    stream.on("open", (result) => stream.pipe(res));
+    stream.on("error", (err) => res.end(err));
   } else if (req.url === "/about") {
     res.setHeader("Content-Type", "text/plain");
     res.end("This is About Page");
@@ -28,22 +31,22 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-const getText = async () => {
-  try {
-    const first = await readFile("./content/text.txt", "utf8");
-    const second = await readFile("./content/text2.txt", "utf8");
-    await writeFile(
-      "./content/writeFromIndex.txt",
-      `Hello these text is from index.js :\n1. ${first}\n2. ${second}\n\n`,
-      { flag: "a" }
-    );
-    console.log(first, second);
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const getText = async () => {
+//   try {
+//     const first = await readFile("./content/text.txt", "utf8");
+//     const second = await readFile("./content/text2.txt", "utf8");
+//     await writeFile(
+//       "./content/writeFromIndex.txt",
+//       `Hello these text is from index.js :\n1. ${first}\n2. ${second}\n\n`,
+//       { flag: "a" }
+//     );
+//     console.log(first, second);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
-getText();
+// getText();
 
 // const getText = (path) => {
 //   return new Promise((resolve, reject) => {
