@@ -1,0 +1,19 @@
+Hello these text is from index.js :
+1. Hello this is first text.txt
+2. Hello this is second text.txtHello these text is from index.js :
+1. Hello this is first text.txt
+2. Hello this is second text.txtHello these text is from index.js :
+1. Hello this is first text.txt
+2. Hello this is second text.txt
+
+Hello these text is from index.js :
+1. Hello this is first text.txt
+2. Hello this is second text.txt
+Hello these text is from index.js :
+1. Hello this is first text.txt
+2. Hello this is second text.txt
+
+Hello these text is from index.js :
+1. Hello this is first text.txt
+2. Hello this is second text.txt
+
